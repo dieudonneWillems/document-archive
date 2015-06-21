@@ -12,6 +12,8 @@
 		02A7B5F21B346CB1004EF0EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A7B5F11B346CB1004EF0EC /* Images.xcassets */; };
 		02A7B5F51B346CB1004EF0EC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A7B5F31B346CB1004EF0EC /* MainMenu.xib */; };
 		02A7B6011B346CB1004EF0EC /* Document_ArchiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B6001B346CB1004EF0EC /* Document_ArchiveTests.swift */; };
+		02B95ABB1B37325D007435D3 /* DATag.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B95ABA1B37325D007435D3 /* DATag.m */; };
+		02B95ABE1B37325D007435D3 /* DAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B95ABD1B37325D007435D3 /* DAFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,11 @@
 		02A7B5FA1B346CB1004EF0EC /* Document ArchiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Document ArchiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A7B5FF1B346CB1004EF0EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A7B6001B346CB1004EF0EC /* Document_ArchiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document_ArchiveTests.swift; sourceTree = "<group>"; };
+		02B95AB81B37325C007435D3 /* Document Archive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Document Archive-Bridging-Header.h"; sourceTree = "<group>"; };
+		02B95AB91B37325D007435D3 /* DATag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DATag.h; sourceTree = "<group>"; };
+		02B95ABA1B37325D007435D3 /* DATag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATag.m; sourceTree = "<group>"; };
+		02B95ABC1B37325D007435D3 /* DAFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAFile.h; sourceTree = "<group>"; };
+		02B95ABD1B37325D007435D3 /* DAFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAFile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,7 @@
 				02A7B5E91B346CB1004EF0EC /* Document Archive */,
 				02A7B5FD1B346CB1004EF0EC /* Document ArchiveTests */,
 				02A7B5E81B346CB1004EF0EC /* Products */,
+				02B95AB81B37325C007435D3 /* Document Archive-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,10 +83,9 @@
 		02A7B5E91B346CB1004EF0EC /* Document Archive */ = {
 			isa = PBXGroup;
 			children = (
+				02B95AB71B37321D007435D3 /* GUI */,
+				02B95AB61B373212007435D3 /* model */,
 				02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */,
-				02A7B5F11B346CB1004EF0EC /* Images.xcassets */,
-				02A7B5F31B346CB1004EF0EC /* MainMenu.xib */,
-				02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */,
 				02A7B5EA1B346CB1004EF0EC /* Supporting Files */,
 			);
 			path = "Document Archive";
@@ -87,6 +94,7 @@
 		02A7B5EA1B346CB1004EF0EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02A7B5F11B346CB1004EF0EC /* Images.xcassets */,
 				02A7B5EB1B346CB1004EF0EC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -107,6 +115,26 @@
 				02A7B5FF1B346CB1004EF0EC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		02B95AB61B373212007435D3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				02B95ABC1B37325D007435D3 /* DAFile.h */,
+				02B95ABD1B37325D007435D3 /* DAFile.m */,
+				02B95AB91B37325D007435D3 /* DATag.h */,
+				02B95ABA1B37325D007435D3 /* DATag.m */,
+				02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		02B95AB71B37321D007435D3 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				02A7B5F31B346CB1004EF0EC /* MainMenu.xib */,
+			);
+			name = GUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02B95ABE1B37325D007435D3 /* DAFile.m in Sources */,
+				02B95ABB1B37325D007435D3 /* DATag.m in Sources */,
 				02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */,
 				02A7B5F01B346CB1004EF0EC /* Document_Archive.xcdatamodeld in Sources */,
 			);
@@ -327,10 +357,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Document Archive/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Document Archive-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -338,10 +371,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Document Archive/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Document Archive-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -400,6 +435,7 @@
 				02A7B6061B346CB1004EF0EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02A7B6071B346CB1004EF0EC /* Build configuration list for PBXNativeTarget "Document ArchiveTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +444,7 @@
 				02A7B6091B346CB1004EF0EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
