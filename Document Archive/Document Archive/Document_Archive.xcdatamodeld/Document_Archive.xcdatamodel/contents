@@ -2,21 +2,24 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="File" representedClassName="DAFile" syncable="YES">
         <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="documentDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="modificationDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="path" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="files" inverseEntity="Tag" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="proposedTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="proposedForFiles" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="files" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="DATag" syncable="YES">
-        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="broader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="narrower" inverseEntity="Tag" syncable="YES"/>
-        <relationship name="files" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="tags" inverseEntity="File" syncable="YES"/>
-        <relationship name="narrower" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="broader" inverseEntity="Tag" syncable="YES"/>
-        <relationship name="sameAs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="sameAs" inverseEntity="Tag" syncable="YES"/>
+        <attribute name="string" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="broader" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="narrower" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="tags" inverseEntity="File" syncable="YES"/>
+        <relationship name="narrower" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="broader" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="proposedForFiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="proposedTags" inverseEntity="File" syncable="YES"/>
+        <relationship name="sameAs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="sameAs" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tag" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="File" positionX="-45" positionY="36" width="128" height="135"/>
+        <element name="Tag" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="File" positionX="-45" positionY="36" width="128" height="165"/>
     </elements>
 </model>
