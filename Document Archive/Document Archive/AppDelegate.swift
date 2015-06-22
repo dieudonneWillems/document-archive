@@ -16,12 +16,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        let fetchRequest = NSFetchRequest(entityName: "Tag")
+        var tags = [DATag]()
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
+            tags = fetchResults
+        }
+        for tag in tags {
+            println("Retrieved tag: \(tag.label)")
+            for broaderTag in tag.broader {
+                let bro = broaderTag.label as String
+                println("                    -> \(bro)")
+            }
+            for narrowerTag in tag.narrower {
+                let nar = narrowerTag.label as String
+                println("                    <- \(nar)")
+            }
+        }
+        println("Retrieved tags: \(tags)")
+        var fruit = self.createNewTag("fruit")
+        var apple = self.createNewTag("apple", broader: fruit)
+        var pear = self.createNewTag("pear", broader: fruit)
+        println("Test data APPLE: \(apple)")
+        println("Test data FRUIT: \(fruit)")
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
+    
+    
+    // MARK: - Core Data object access methods
+    
+    func createNewTag(tagName :String, broader: DATag?=nil) -> DATag {
+        let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: self.managedObjectContext!) as! DATag
+        newTag.label = tagName
+        if broader != nil {
+            newTag.addBroaderTag(broader!)
+        }
+        return newTag
+    }
 
+        
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {

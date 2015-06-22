@@ -19,5 +19,38 @@ class DAFile: NSManagedObject {
     @NSManaged var documentDate: NSTimeInterval
     @NSManaged var tags: NSSet
     @NSManaged var proposedTags: NSSet
+    @NSManaged var thumbnail: NSData
 
+}
+
+
+extension DAFile {
+    
+    func addTag(tag:DATag) {
+        var nset = NSMutableSet()
+        nset.setSet(tags as Set<NSObject>)
+        nset.addObject(tag)
+        tags = nset
+    }
+    
+    func removeTag(tag:DATag) {
+        var nset = NSMutableSet()
+        nset.setSet(tags as Set<NSObject>)
+        nset.removeObject(tag)
+        tags = nset
+    }
+    
+    func addProposedTag(tag:DATag) {
+        var nset = NSMutableSet()
+        nset.setSet(proposedTags as Set<NSObject>)
+        nset.addObject(tag)
+        proposedTags = nset
+    }
+    
+    func removeProposedTag(tag:DATag) {
+        var nset = NSMutableSet()
+        nset.setSet(proposedTags as Set<NSObject>)
+        nset.removeObject(tag)
+        proposedTags = nset
+    }
 }
