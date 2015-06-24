@@ -682,7 +682,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="284" height="539"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JWt-yx-mbc">
+                                    <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JWt-yx-mbc">
                                         <rect key="frame" x="0.0" y="0.0" width="284" height="539"/>
                                         <subviews>
                                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAP-p6-ymn">
