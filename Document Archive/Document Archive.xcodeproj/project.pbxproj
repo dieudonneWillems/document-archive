@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024BB7BF1B34D74F0054EED3 /* InfoBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */; };
+		024BB7C01B34D74F0054EED3 /* InfoBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */; };
 		02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */; };
 		02A7B5F01B346CB1004EF0EC /* Document_Archive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */; };
 		02A7B5F21B346CB1004EF0EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A7B5F11B346CB1004EF0EC /* Images.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarIn.png; sourceTree = "<group>"; };
+		024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarOut.png; sourceTree = "<group>"; };
 		02A7B5E71B346CB1004EF0EC /* Document Archive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Document Archive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A7B5EB1B346CB1004EF0EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,11 @@
 				02B95AB71B37321D007435D3 /* GUI */,
 				02B95AB61B373212007435D3 /* model */,
 				02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */,
+				02A7B5F11B346CB1004EF0EC /* Images.xcassets */,
+				024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */,
+				024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */,
+				02A7B5F31B346CB1004EF0EC /* MainMenu.xib */,
+				02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */,
 				02A7B5EA1B346CB1004EF0EC /* Supporting Files */,
 			);
 			path = "Document Archive";
@@ -215,6 +224,8 @@
 			files = (
 				02A7B5F21B346CB1004EF0EC /* Images.xcassets in Resources */,
 				02A7B5F51B346CB1004EF0EC /* MainMenu.xib in Resources */,
+				024BB7C01B34D74F0054EED3 /* InfoBarOut.png in Resources */,
+				024BB7BF1B34D74F0054EED3 /* InfoBarIn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
