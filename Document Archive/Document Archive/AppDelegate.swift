@@ -29,9 +29,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        var stags = tagsContaining("p")
+        var stags = tagsContaining("a")
         for tag in stags {
-            println("Retrieved tag with 'p': \(tag.label)")
+            println("Retrieved tag with 'a': \(tag.label)")
             for broaderTag in tag.broader {
                 let bro = broaderTag.label as String
                 println("                    -> \(bro)")
@@ -63,6 +63,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
             tags = fetchResults
         }
+        tags.sort({(tag1, tag2) -> Bool in
+            return tag1.label < tag2.label
+        })
         return tags
     }
     
@@ -74,6 +77,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
             tags = fetchResults
         }
+        tags.sort({(tag1, tag2) -> Bool in
+            let label1 = tag1.label
+            let label2 = tag2.label
+            let ex1 = label1.rangeOfString(string)
+            let ex2 = label2.rangeOfString(string)
+            if ex1 != ex2 {
+                return ex1!.startIndex < ex2!.startIndex
+            }
+            return label1 < label2
+        })
         return tags
     }
     
