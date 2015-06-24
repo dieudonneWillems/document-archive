@@ -16,11 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        let fetchRequest = NSFetchRequest(entityName: "Tag")
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
+        var tags = allTags()
         for tag in tags {
             println("Retrieved tag: \(tag.label)")
             for broaderTag in tag.broader {
@@ -32,12 +28,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 println("                    <- \(nar)")
             }
         }
-        println("Retrieved tags: \(tags)")
+        
+        var stags = tagsContaining("p")
+        for tag in stags {
+            println("Retrieved tag with 'p': \(tag.label)")
+            for broaderTag in tag.broader {
+                let bro = broaderTag.label as String
+                println("                    -> \(bro)")
+            }
+            for narrowerTag in tag.narrower {
+                let nar = narrowerTag.label as String
+                println("                    <- \(nar)")
+            }
+        }
+        /*
         var fruit = self.createNewTag("fruit")
         var apple = self.createNewTag("apple", broader: fruit)
         var pear = self.createNewTag("pear", broader: fruit)
         println("Test data APPLE: \(apple)")
         println("Test data FRUIT: \(fruit)")
+*/
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -46,6 +56,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // MARK: - Core Data object access methods
+    
+    func allTags() -> [DATag] {
+        let fetchRequest = NSFetchRequest(entityName: "Tag")
+        var tags = [DATag]()
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
+            tags = fetchResults
+        }
+        return tags
+    }
+    
+    func tagsContaining(string :String) -> [DATag] {
+        var fetchRequest = NSFetchRequest(entityName: "Tag")
+        let predicate = NSPredicate(format: "label contains[c] %@", string)
+        fetchRequest.predicate = predicate
+        var tags = [DATag]()
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
+            tags = fetchResults
+        }
+        return tags
+    }
     
     func createNewTag(tagName :String, broader: DATag?=nil) -> DATag {
         let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: self.managedObjectContext!) as! DATag
