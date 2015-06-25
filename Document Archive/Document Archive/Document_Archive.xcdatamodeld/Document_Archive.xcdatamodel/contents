@@ -12,6 +12,7 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="files" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Document_Archive.DATag" syncable="YES">
+        <attribute name="colour" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="broader" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="narrower" inverseEntity="Tag" syncable="YES"/>
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="tags" inverseEntity="File" syncable="YES"/>
@@ -21,6 +22,6 @@
     </entity>
     <elements>
         <element name="File" positionX="-45" positionY="36" width="128" height="180"/>
-        <element name="Tag" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Tag" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

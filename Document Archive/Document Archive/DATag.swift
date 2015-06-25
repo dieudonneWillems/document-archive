@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Cocoa
 
 class DATag: NSManagedObject {
 
@@ -17,6 +18,7 @@ class DATag: NSManagedObject {
     @NSManaged var sameAs: NSSet
     @NSManaged var files: NSSet
     @NSManaged var proposedForFiles: NSSet
+    @NSManaged var colour : NSColor
 }
 
 
