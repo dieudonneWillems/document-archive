@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		024BB7BF1B34D74F0054EED3 /* InfoBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */; };
 		024BB7C01B34D74F0054EED3 /* InfoBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */; };
+		0276CCA71B3B07C7000F3AC9 /* DAKeywordsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */; };
+		0276CCA81B3B07C7000F3AC9 /* DAKeywordsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */; };
 		02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */; };
 		02A7B5F01B346CB1004EF0EC /* Document_Archive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */; };
 		02A7B5F21B346CB1004EF0EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A7B5F11B346CB1004EF0EC /* Images.xcassets */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarIn.png; sourceTree = "<group>"; };
 		024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarOut.png; sourceTree = "<group>"; };
+		0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAKeywordsWindowController.swift; sourceTree = "<group>"; };
+		0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DAKeywordsWindowController.xib; sourceTree = "<group>"; };
 		02A7B5E71B346CB1004EF0EC /* Document Archive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Document Archive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A7B5EB1B346CB1004EF0EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +105,6 @@
 		02A7B5EA1B346CB1004EF0EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				02A7B5F11B346CB1004EF0EC /* Images.xcassets */,
 				02A7B5EB1B346CB1004EF0EC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -129,7 +132,6 @@
 			children = (
 				02B95AC11B376D86007435D3 /* DATag.swift */,
 				02B95ABF1B376D86007435D3 /* DAFile.swift */,
-				02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -137,7 +139,8 @@
 		02B95AB71B37321D007435D3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				02A7B5F31B346CB1004EF0EC /* MainMenu.xib */,
+				0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */,
+				0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02A7B5F21B346CB1004EF0EC /* Images.xcassets in Resources */,
+				0276CCA81B3B07C7000F3AC9 /* DAKeywordsWindowController.xib in Resources */,
 				02A7B5F51B346CB1004EF0EC /* MainMenu.xib in Resources */,
 				024BB7C01B34D74F0054EED3 /* InfoBarOut.png in Resources */,
 				024BB7BF1B34D74F0054EED3 /* InfoBarIn.png in Resources */,
@@ -244,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02B95AC01B376D86007435D3 /* DAFile.swift in Sources */,
+				0276CCA71B3B07C7000F3AC9 /* DAKeywordsWindowController.swift in Sources */,
 				02B95AC21B376D86007435D3 /* DATag.swift in Sources */,
 				02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */,
 				02A7B5F01B346CB1004EF0EC /* Document_Archive.xcdatamodeld in Sources */,

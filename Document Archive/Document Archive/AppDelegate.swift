@@ -10,7 +10,8 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
+    var keywordsWindowController : DAKeywordsWindowController!
     @IBOutlet weak var window: NSWindow!
 
 
@@ -65,6 +66,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+    }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func showKeywordsWindow(sender: NSButton) {
+        println("showing keywords")
+        if keywordsWindowController == nil {
+            keywordsWindowController = DAKeywordsWindowController(windowNibName: "DAKeywordsWindowController")
+        }
+        keywordsWindowController.window?.orderFront(sender)
     }
     
     
