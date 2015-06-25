@@ -11,6 +11,7 @@ import Cocoa
 class DAKeywordsWindowController: NSWindowController {
     
     @IBOutlet weak var outlineView : NSOutlineView!
+    var tags : [DATag] = []
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -25,6 +26,7 @@ class DAKeywordsWindowController: NSWindowController {
     
     func reloadData() {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        tags = appdelegate.allTags()
         outlineView.reloadData()
     }
     
@@ -32,7 +34,10 @@ class DAKeywordsWindowController: NSWindowController {
     // MARK: - Data source methods for outline view with tags
     
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
-        return "test"
+        if let tag = item as? DATag {
+ //           return tag.narrower[index]
+        }
+        return tags[index]
     }
     
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
@@ -40,7 +45,7 @@ class DAKeywordsWindowController: NSWindowController {
     }
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
-        return 5;
+        return tags.count;
     }
     
     func outlineView(outlineView: NSOutlineView, objectValueForTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
@@ -49,5 +54,14 @@ class DAKeywordsWindowController: NSWindowController {
     
     func outlineView(outlineView: NSOutlineView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) {
         
+    }
+    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+        var v = outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
+        if let tag = item as? DATag {
+            if let tf = v.textField {
+                tf.stringValue = tag.label
+            }
+        }
+        return v
     }
 }
