@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        var tags = allTags()
+        var tags = rootTags()
         for tag in tags {
             println("Retrieved tag: \(tag.label)")
             for broaderTag in tag.broader {
@@ -71,6 +71,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func allTags() -> [DATag] {
         let fetchRequest = NSFetchRequest(entityName: "Tag")
+        var tags = [DATag]()
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
+            tags = fetchResults
+        }
+        tags.sort({(tag1, tag2) -> Bool in
+            return tag1.label < tag2.label
+        })
+        return tags
+    }
+    
+    func rootTags() -> [DATag] {
+        var fetchRequest = NSFetchRequest(entityName: "Tag")
+        let predicate = NSPredicate(format: "broader.@count == 0")
+        fetchRequest.predicate = predicate
         var tags = [DATag]()
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
             tags = fetchResults

@@ -22,6 +22,12 @@ class DATag: NSManagedObject {
 
 extension DATag {
     
+    func broaderTags() -> [DATag] {
+        var broaderArray = broader.allObjects as! [DATag]
+        broaderArray.sort({$0.label < $1.label})
+        return broaderArray
+    }
+    
     func addBroaderTag(tag:DATag) {
         var nset = NSMutableSet()
         nset.setSet(broader as Set<NSObject>)
@@ -36,6 +42,12 @@ extension DATag {
         broader = nset
     }
     
+    func narrowerTags() -> [DATag] {
+        var narrowerArray = narrower.allObjects as! [DATag]
+        narrowerArray.sort({$0.label < $1.label})
+        return narrowerArray
+    }
+    
     func addNarrowerTag(tag:DATag) {
         var nset = NSMutableSet()
         nset.setSet(narrower as Set<NSObject>)
@@ -48,6 +60,12 @@ extension DATag {
         nset.setSet(narrower as Set<NSObject>)
         nset.removeObject(tag)
         narrower = nset
+    }
+    
+    func synonyms() -> [DATag] {
+        var synonyms = sameAs.allObjects as! [DATag]
+        synonyms.sort({$0.label < $1.label})
+        return synonyms
     }
     
     func addSynonym(tag:DATag) {
