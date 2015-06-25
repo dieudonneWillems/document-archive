@@ -26,7 +26,7 @@ class DAKeywordsWindowController: NSWindowController {
     
     func reloadData() {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        tags = appdelegate.allTags()
+        tags = appdelegate.rootTags()
         outlineView.reloadData()
     }
     
@@ -35,16 +35,22 @@ class DAKeywordsWindowController: NSWindowController {
     
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
         if let tag = item as? DATag {
- //           return tag.narrower[index]
+            return tag.narrowerTags()[index]
         }
         return tags[index]
     }
     
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+        if let tag = item as? DATag {
+            return (tag.narrowerTags().count > 0)
+        }
         return false;
     }
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+        if let tag = item as? DATag {
+            return tag.narrowerTags().count
+        }
         return tags.count;
     }
     
