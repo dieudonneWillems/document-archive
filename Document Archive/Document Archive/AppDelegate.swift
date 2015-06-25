@@ -42,9 +42,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             println("           colour : \(tag.colour)")
         }
+        
+        
+        let apple = self.tagsWithLabel("apple")
+        let fruit = self.tagsWithLabel("fruit")
+        
+        fruit[0].addBroaderTag(apple[0])
+        println("fruit: \(fruit)")
+        
         /*
         var fruit = self.createNewTag("fruit")
         var apple = self.createNewTag("apple", broader: fruit)
+        var elstar = self.createNewTag("elstar", broader: apple)
         var pear = self.createNewTag("pear", broader: fruit)
         println("Test data APPLE: \(apple)")
         println("Test data FRUIT: \(fruit)")
@@ -96,6 +105,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         tags.sort({(tag1, tag2) -> Bool in
             return tag1.label < tag2.label
         })
+        return tags
+    }
+    
+    /**
+    Returns all tags in the database with a label exactly the same as the string specified in the first parameter :string:.
+    
+    :param: string The label of the requested tags.
+    
+    :returns: All tags with label equal to :string:.
+    */
+    func tagsWithLabel(string :String) -> [DATag] {
+        var fetchRequest = NSFetchRequest(entityName: "Tag")
+        let predicate = NSPredicate(format: "label == %@", string)
+        fetchRequest.predicate = predicate
+        var tags = [DATag]()
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
+            tags = fetchResults
+        }
         return tags
     }
     
