@@ -12,11 +12,12 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    let tagsAccess = DATagsAccess()
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        var tags = rootTags()
+        var tags = tagsAccess.rootTags()
         for tag in tags {
             println("Retrieved tag: \(tag.label)")
             for broaderTag in tag.broader {
@@ -29,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        var stags = tagsBeginningWith("M")
+        var stags = tagsAccess.tagsBeginningWith("M")
         for tag in stags {
             println("Retrieved tag with 'm': \(tag.label)")
             for broaderTag in tag.broader {
@@ -44,8 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         
-        let apple = self.tagsWithLabel("apple")
-        let fruit = self.tagsWithLabel("fruit")
+        let apple = tagsAccess.tagsWithLabel("apple")
+        let fruit = tagsAccess.tagsWithLabel("fruit")
         
         fruit[0].addBroaderTag(apple[0])
         println("fruit: \(fruit)")
@@ -66,148 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-    
-    
-    // MARK: - Core Data object access methods
-    
-    /**
-        Returns all tags in the database. The tags are sorted alphabetically on their label.
-    
-        :returns: An array containing all tags.
-     */
-    func allTags() -> [DATag] {
-        let fetchRequest = NSFetchRequest(entityName: "Tag")
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
-        tags.sort({(tag1, tag2) -> Bool in
-            return tag1.label < tag2.label
-        })
-        return tags
-    }
-    
-    
-    /**
-    Returns all root tags in the database. The tags are sorted alphabetically on their label.
-    A root tag is a tag without any broader concepts/tags.
-    
-    :returns: An array containing all root tags.
-    */
-    func rootTags() -> [DATag] {
-        var fetchRequest = NSFetchRequest(entityName: "Tag")
-        let predicate = NSPredicate(format: "broader.@count == 0")
-        fetchRequest.predicate = predicate
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
-        tags.sort({(tag1, tag2) -> Bool in
-            return tag1.label < tag2.label
-        })
-        return tags
-    }
-    
-    /**
-    Returns all tags in the database with a label exactly the same as the string specified in the first parameter :string:.
-    
-    :param: string The label of the requested tags.
-    
-    :returns: All tags with label equal to :string:.
-    */
-    func tagsWithLabel(string :String) -> [DATag] {
-        var fetchRequest = NSFetchRequest(entityName: "Tag")
-        let predicate = NSPredicate(format: "label == %@", string)
-        fetchRequest.predicate = predicate
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
-        return tags
-    }
-    
-    /**
-    Returns all tags in the database containing the string specified in the first parameter :string:.
-    For instance for string 'p' both 'apple' and 'pear' will be returned but not 'mango'.
-    The tags are sorted according to the location at which :string: appears in the tag, and if the same
-    alphabetically. Tags that start with :string: will therefore appear at the top of the list.
-    
-    :param: string The string contained in the requested tags.
-    
-    :returns: All tags containing :string:.
-    */
-    func tagsContaining(string :String) -> [DATag] {
-        var fetchRequest = NSFetchRequest(entityName: "Tag")
-        let predicate = NSPredicate(format: "label contains[c] %@", string)
-        fetchRequest.predicate = predicate
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
-        tags.sort({(tag1, tag2) -> Bool in
-            let label1 = tag1.label
-            let label2 = tag2.label
-            let ex1 = label1.rangeOfString(string)
-            let ex2 = label2.rangeOfString(string)
-            if ex1 != ex2 {
-                return ex1!.startIndex < ex2!.startIndex    // sort according to location of the string in the tag name.
-            }
-            return label1 < label2 // if the location is the same, sort alphabetically.
-        })
-        return tags
-    }
-    
-    /**
-    Returns all tags in the database starting with the string specified in the first parameter :string:.
-    For instance for string 'p' 'pear' will ber returned but not 'apple' or 'mango'.
-    The tags are sorted alphabetically
-    
-    :param: string The string with which the tags need to start to be included in the list.
-
-    :returns: All tags starting with :string:.
-    */
-    func tagsBeginningWith(string :String) -> [DATag] {
-        var fetchRequest = NSFetchRequest(entityName: "Tag")
-        let predicate = NSPredicate(format: "label beginswith[c] %@", string)
-        fetchRequest.predicate = predicate
-        var tags = [DATag]()
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [DATag] {
-            tags = fetchResults
-        }
-        tags.sort({(tag1, tag2) -> Bool in
-            return tag1.label < tag2.label
-        })
-        return tags
-    }
-    
-    /**
-    Creates a new tag with the specified tag name and optionally as a child of the :broader: tag.
-    For instance a new tag with name 'apple' can be created with parent 'fruit'.
-    
-    :param: tagName The name of the tag.
-    :param: broader The parent (broader) tag.
-    
-    :return: The newly created tag.
-    */
-    func createNewTag(tagName :String, broader: DATag?=nil) -> DATag {
-        let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: self.managedObjectContext!) as! DATag
-        newTag.label = tagName
-        if broader != nil {
-            newTag.addBroaderTag(broader!)
-        }
-        return newTag
-    }
-    
-    
-    /**
-    Deletes the specified tag from the database.
-    
-    :param: tag The tag to be deleted.
-    */
-    func deleteTag(tag: DATag) {
-        self.managedObjectContext?.deleteObject(tag)
-    }
-
+   
         
     // MARK: - Core Data stack
 

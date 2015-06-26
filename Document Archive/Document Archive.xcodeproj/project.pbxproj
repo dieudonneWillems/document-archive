@@ -16,6 +16,7 @@
 		02A7B6011B346CB1004EF0EC /* Document_ArchiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B6001B346CB1004EF0EC /* Document_ArchiveTests.swift */; };
 		02B95AC01B376D86007435D3 /* DAFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B95ABF1B376D86007435D3 /* DAFile.swift */; };
 		02B95AC21B376D86007435D3 /* DATag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B95AC11B376D86007435D3 /* DATag.swift */; };
+		02C858C41B3D621E00300680 /* DATagsAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C858C31B3D621E00300680 /* DATagsAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		02B95AB81B37325C007435D3 /* Document Archive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Document Archive-Bridging-Header.h"; sourceTree = "<group>"; };
 		02B95ABF1B376D86007435D3 /* DAFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFile.swift; sourceTree = "<group>"; };
 		02B95AC11B376D86007435D3 /* DATag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATag.swift; sourceTree = "<group>"; };
+		02C858C31B3D621E00300680 /* DATagsAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATagsAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,6 @@
 		02A7B5EA1B346CB1004EF0EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				02A7B5F11B346CB1004EF0EC /* Images.xcassets */,
 				02A7B5EB1B346CB1004EF0EC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -129,7 +130,7 @@
 			children = (
 				02B95AC11B376D86007435D3 /* DATag.swift */,
 				02B95ABF1B376D86007435D3 /* DAFile.swift */,
-				02A7B5EE1B346CB1004EF0EC /* Document_Archive.xcdatamodeld */,
+				02C858C31B3D621E00300680 /* DATagsAccess.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -137,7 +138,6 @@
 		02B95AB71B37321D007435D3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				02A7B5F31B346CB1004EF0EC /* MainMenu.xib */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -243,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C858C41B3D621E00300680 /* DATagsAccess.swift in Sources */,
 				02B95AC01B376D86007435D3 /* DAFile.swift in Sources */,
 				02B95AC21B376D86007435D3 /* DATag.swift in Sources */,
 				02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */,
