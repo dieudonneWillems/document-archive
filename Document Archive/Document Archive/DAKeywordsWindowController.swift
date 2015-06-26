@@ -26,7 +26,7 @@ class DAKeywordsWindowController: NSWindowController {
     
     func reloadData() {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        tags = appdelegate.rootTags()
+        tags = appdelegate.tagsAccess.rootTags()
         outlineView.reloadData()
     }
     
