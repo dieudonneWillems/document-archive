@@ -10,6 +10,49 @@ import Cocoa
 
 class DATagsAccess: NSObject {
     
+    // MARK: - Tags as images
+    
+    /**
+    Returns an image with a small circle in the colour of the tag.
+    
+    :param: tag The tag for which the image is requested.
+    
+    :returns: The image with the coloured circle.
+    */
+    func smallTagLabel(tag: DATag) -> NSImage {
+        var image = NSImage(size: NSMakeSize(24,24))
+        image.lockFocus()
+        tag.colour.set()
+        let rect = NSMakeRect(0, 0, 24, 24)
+        var circle = NSBezierPath(ovalInRect: rect)
+        circle.fill()
+        image.unlockFocus()
+        return image
+    }
+    
+    /**
+    Returns an image with the label of the tag encircled by a rounded rectangle in the
+    colour of the tag.
+    
+    :param: tag The tag for which the image is requested.
+    :param: textAttributes The text attributes used fro creating the string.
+    
+    :returns: The image with the coloured tag.
+    */
+    func namedTagLabel(tag: DATag, textAttributes: [String:AnyObject]) -> NSImage {
+        let stringSize = (tag.label as NSString).sizeWithAttributes(textAttributes)
+        var image = NSImage(size: stringSize)
+        image.lockFocus()
+        tag.colour.set()
+        let rect = NSMakeRect(0, 0, stringSize.width, stringSize.height)
+        var rrect = NSBezierPath(roundedRect: rect, xRadius: 2, yRadius: 2)
+        rrect.fill()
+        var spoint = NSMakePoint(0, 0)
+        (tag.label as NSString).drawAtPoint(spoint, withAttributes: textAttributes)
+        image.unlockFocus()
+        return image
+    }
+    
     
     // MARK: - Core Data object access methods
     
