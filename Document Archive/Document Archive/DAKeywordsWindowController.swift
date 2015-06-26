@@ -64,8 +64,12 @@ class DAKeywordsWindowController: NSWindowController {
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
         var v = outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
         if let tag = item as? DATag {
+            let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
             if let tf = v.textField {
                 tf.stringValue = tag.label
+            }
+            if let iv = v.imageView {
+                iv.image = appdelegate.tagsAccess.smallTagLabel(tag)
             }
         }
         return v

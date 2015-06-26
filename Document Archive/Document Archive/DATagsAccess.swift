@@ -20,10 +20,10 @@ class DATagsAccess: NSObject {
     :returns: The image with the coloured circle.
     */
     func smallTagLabel(tag: DATag) -> NSImage {
-        var image = NSImage(size: NSMakeSize(24,24))
+        var image = NSImage(size: NSMakeSize(8,8))
         image.lockFocus()
         tag.colour.set()
-        let rect = NSMakeRect(0, 0, 24, 24)
+        let rect = NSMakeRect(0, 0, 8, 8)
         var circle = NSBezierPath(ovalInRect: rect)
         circle.fill()
         image.unlockFocus()
