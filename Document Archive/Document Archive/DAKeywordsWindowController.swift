@@ -11,22 +11,48 @@ import Cocoa
 class DAKeywordsWindowController: NSWindowController {
     
     @IBOutlet weak var outlineView : NSOutlineView!
+    @IBOutlet weak var searchTF : NSSearchField!
     var tags : [DATag] = []
 
     override func windowDidLoad() {
         super.windowDidLoad()
         self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
         self.window!.titlebarAppearsTransparent = true
-        self.window!.styleMask |= NSFullSizeContentViewWindowMask
+       // self.window!.styleMask |= NSFullSizeContentViewWindowMask
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         self.reloadData()
     }
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func searchFieldTyped(sender: NSSearchField) {
+        self.reloadData()
+    }
+    
     
     // MARK: - Reloading data
     
     func reloadData() {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        tags = appdelegate.tagsAccess.rootTags()
+        var highlightedTags = [DATag]()
+        if searchTF.stringValue.isEmpty {
+            tags = appdelegate.tagsAccess.rootTags()
+        } else {
+            let query = searchTF.stringValue
+            highlightedTags = appdelegate.tagsAccess.tagsContaining(query)
+            if highlightedTags.count > 0 {
+                tags.removeAll(keepCapacity: true)
+                for htag in highlightedTags {
+                    let roots = htag.rootTags()
+                    for rtag in roots {
+                        if !contains(tags, rtag) {
+                            tags.append(rtag)
+                        }
+                    }
+                }
+            }
+        }
         outlineView.reloadData()
     }
     
