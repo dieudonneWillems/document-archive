@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DAKeywordsWindowController" customModule="Document_Archive" customModuleProvider="target">
             <connections>
                 <outlet property="outlineView" destination="q2K-19-mhg" id="QyA-eW-Ksy"/>
+                <outlet property="searchTF" destination="TG3-nZ-O6W" id="x8C-gt-a9q"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -45,6 +46,9 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <action selector="searchFieldTyped:" target="-2" id="4Fr-J1-CGz"/>
+                                </connections>
                             </searchField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ryS-3R-jqs">
                                 <rect key="frame" x="24" y="3" width="16" height="18"/>
@@ -82,14 +86,14 @@
                             <constraint firstAttribute="bottom" secondItem="ryS-3R-jqs" secondAttribute="bottom" constant="3" id="ya7-h9-r3m"/>
                         </constraints>
                     </visualEffectView>
-                    <scrollView focusRingType="none" appearanceType="aqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-Fp-gn6">
+                    <scrollView focusRingType="none" appearanceType="aqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-Fp-gn6">
                         <rect key="frame" x="0.0" y="26" width="344" height="407"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="aa3-qf-9TT">
                             <rect key="frame" x="1" y="1" width="148" height="398"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="14" outlineTableColumn="4D8-E5-Ne4" id="q2K-19-mhg">
-                                    <rect key="frame" x="0.0" y="0.0" width="148" height="398"/>
+                                <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="14" outlineTableColumn="4D8-E5-Ne4" id="q2K-19-mhg">
+                                    <rect key="frame" x="0.0" y="0.0" width="344" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="0.0"/>
                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -159,7 +163,7 @@
                             <nil key="backgroundColor"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="GOs-Mp-eMX">
-                            <rect key="frame" x="1" y="375.98755359649658" width="145.46498870849609" height="15"/>
+                            <rect key="frame" x="1" y="375.98755359649658" width="145.5" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Ocm-JZ-Qjo">

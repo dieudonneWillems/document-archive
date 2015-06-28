@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		024BB7BF1B34D74F0054EED3 /* InfoBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */; };
 		024BB7C01B34D74F0054EED3 /* InfoBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */; };
+		0265C7611B40910C007D4DB1 /* NSColor+LightAndDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0265C7601B40910C007D4DB1 /* NSColor+LightAndDark.swift */; };
 		0276CCA71B3B07C7000F3AC9 /* DAKeywordsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */; };
 		0276CCA81B3B07C7000F3AC9 /* DAKeywordsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */; };
 		02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B5EC1B346CB1004EF0EC /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		024BB7BD1B34D74F0054EED3 /* InfoBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarIn.png; sourceTree = "<group>"; };
 		024BB7BE1B34D74F0054EED3 /* InfoBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoBarOut.png; sourceTree = "<group>"; };
+		0265C7601B40910C007D4DB1 /* NSColor+LightAndDark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+LightAndDark.swift"; sourceTree = "<group>"; };
 		0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAKeywordsWindowController.swift; sourceTree = "<group>"; };
 		0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DAKeywordsWindowController.xib; sourceTree = "<group>"; };
 		02A7B5E71B346CB1004EF0EC /* Document Archive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Document Archive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 			children = (
 				0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */,
 				0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */,
+				0265C7601B40910C007D4DB1 /* NSColor+LightAndDark.swift */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0265C7611B40910C007D4DB1 /* NSColor+LightAndDark.swift in Sources */,
 				02C858C41B3D621E00300680 /* DATagsAccess.swift in Sources */,
 				02B95AC01B376D86007435D3 /* DAFile.swift in Sources */,
 				0276CCA71B3B07C7000F3AC9 /* DAKeywordsWindowController.swift in Sources */,
