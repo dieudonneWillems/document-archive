@@ -12,7 +12,7 @@ class DAKeywordsWindowController: NSWindowController {
     
     @IBOutlet weak var outlineView : NSOutlineView!
     @IBOutlet weak var searchTF : NSSearchField!
-    var tags : [DATag] = []
+    var tags : [DASelectionTag] = []
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -35,16 +35,24 @@ class DAKeywordsWindowController: NSWindowController {
     
     func reloadData() {
         let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        var highlightedTags = [DATag]()
+        DASelectionTag.resetSelectedTags()
+        tags.removeAll(keepCapacity: true)
+        var stags = [DASelectionTag]()
         if searchTF.stringValue.isEmpty {
-            tags = appdelegate.tagsAccess.rootTags()
+            let troots = appdelegate.tagsAccess.rootTags()
+            for root in troots {
+                var stag = DASelectionTag.selectionTag(root, isSearchResult: false)
+                stag.addNarrower()
+                tags.append(stag)
+            }
         } else {
             let query = searchTF.stringValue
-            highlightedTags = appdelegate.tagsAccess.tagsContaining(query)
+            let highlightedTags = appdelegate.tagsAccess.tagsContaining(query)
             if highlightedTags.count > 0 {
-                tags.removeAll(keepCapacity: true)
                 for htag in highlightedTags {
-                    let roots = htag.rootTags()
+                    let stag = DASelectionTag.selectionTag(htag, isSearchResult: true)
+                    stags.append(stag)
+                    let roots = stag.rootTags()
                     for rtag in roots {
                         if !contains(tags, rtag) {
                             tags.append(rtag)
@@ -54,28 +62,34 @@ class DAKeywordsWindowController: NSWindowController {
             }
         }
         outlineView.reloadData()
+        if stags.count > 0 {
+            for stag in stags {
+                outlineView.reloadItem(stag)
+                outlineView.expandItem(stag)
+            }
+        }
     }
     
     
     // MARK: - Data source methods for outline view with tags
     
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
-        if let tag = item as? DATag {
-            return tag.narrowerTags()[index]
+        if let tag = item as? DASelectionTag {
+            return tag.narrower[index]
         }
         return tags[index]
     }
     
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
-        if let tag = item as? DATag {
-            return (tag.narrowerTags().count > 0)
+        if let tag = item as? DASelectionTag {
+            return (tag.narrower.count > 0)
         }
         return false;
     }
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
-        if let tag = item as? DATag {
-            return tag.narrowerTags().count
+        if let tag = item as? DASelectionTag {
+            return tag.narrower.count
         }
         return tags.count;
     }
@@ -89,13 +103,12 @@ class DAKeywordsWindowController: NSWindowController {
     }
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
         var v = outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
-        if let tag = item as? DATag {
-            let appdelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        if let tag = item as? DASelectionTag {
             if let tf = v.textField {
-                tf.stringValue = tag.label
+                tf.stringValue = tag.tag.label
             }
             if let iv = v.imageView {
-                iv.image = appdelegate.tagsAccess.smallTagLabel(tag)
+                iv.image = tag.tagIcon
             }
         }
         return v

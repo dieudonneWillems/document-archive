@@ -20,6 +20,7 @@
 		02B95AC01B376D86007435D3 /* DAFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B95ABF1B376D86007435D3 /* DAFile.swift */; };
 		02B95AC21B376D86007435D3 /* DATag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B95AC11B376D86007435D3 /* DATag.swift */; };
 		02C858C41B3D621E00300680 /* DATagsAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C858C31B3D621E00300680 /* DATagsAccess.swift */; };
+		02D4C6B81B4405D300C176CF /* DASelectionTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4C6B71B4405D300C176CF /* DASelectionTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		02B95ABF1B376D86007435D3 /* DAFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFile.swift; sourceTree = "<group>"; };
 		02B95AC11B376D86007435D3 /* DATag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATag.swift; sourceTree = "<group>"; };
 		02C858C31B3D621E00300680 /* DATagsAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATagsAccess.swift; sourceTree = "<group>"; };
+		02D4C6B71B4405D300C176CF /* DASelectionTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DASelectionTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				0276CCA51B3B07C7000F3AC9 /* DAKeywordsWindowController.swift */,
 				0276CCA61B3B07C7000F3AC9 /* DAKeywordsWindowController.xib */,
 				0265C7601B40910C007D4DB1 /* NSColor+LightAndDark.swift */,
+				02D4C6B71B4405D300C176CF /* DASelectionTag.swift */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				0276CCA71B3B07C7000F3AC9 /* DAKeywordsWindowController.swift in Sources */,
 				02B95AC21B376D86007435D3 /* DATag.swift in Sources */,
 				02A7B5ED1B346CB1004EF0EC /* AppDelegate.swift in Sources */,
+				02D4C6B81B4405D300C176CF /* DASelectionTag.swift in Sources */,
 				02A7B5F01B346CB1004EF0EC /* Document_Archive.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
